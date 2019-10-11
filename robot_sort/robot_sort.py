@@ -128,7 +128,7 @@ class SortingRobot:
 
         # if self.light_is_on() == False:
         # self.set_light_on
-        return
+        # return
         while self.can_move_left():
             self.move_left()
             self.set_light_on()
