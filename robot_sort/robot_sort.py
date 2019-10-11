@@ -104,38 +104,52 @@ class SortingRobot:
         If we use the light as a base case for sorting
         turn the light off when done? or not sorting
         Selection or bubble sort seems like the likely inspiration for the robot
-        pick up the first item in the list, compare to next item until smaller item found
-        go back to first place, swap the item
-        go to second item, compare to third item, etc. repeat? until light off
+        for every item in the list:
+        pick up the item in the list, compare to next item until smaller item found
+        go back to swap if held greater place
+        until light off
         """
         # Boot up your robot base case
-        self.set_light_on()
-        # pick up first item
-        self.swap_item()
-        while self.light_is_on():
+        while not self.light_is_on():
+            self.set_light_on()
+        # while self.light_is_on():
+
+            # This needs to happen for every item in the list, but I don't think it is...
+            # for list_item in range(len(self._list) - 1):
             while self.can_move_right():
+                # grab item to be compared and move right
+                self.swap_item()
                 self.move_right()
-                # if the held item is GREATER
+                # if the held item is GREATER - GRAB the smaller item move left and replace smaller item before larger item turn light off
                 if self.compare_item() == 1:
                     self.swap_item()
-                    self.set_light_on()
-                # if item to right is not greater than held item go left one grab new item
-                self.move_left()
-                self.swap_item()
-                self.move_right()
-                self.swap_item()
-        # self.swap_item()
+                    self.move_left()
+                    self.swap_item()
+                    self.move_right()
+                    self.set_light_off()
+                    # self.set_light_on()
+                # if item to right is not greater or equal to than held item go left one grab new item and move right 1
+                else:
+                    self.move_left()
+                    self.swap_item()
+                    self.move_right()
+                # if light is off and all judged move left
+                if not self.light_is_on():
+                    while self.can_move_left():
+                        self.move_left()
+                    # self.swap_item()
+            return self._list
+            # self.swap_item()
 
-        # if self.light_is_on() == False:
-        # self.set_light_on
-        # return
-        while self.can_move_left():
-            self.move_left()
-            self.set_light_on()
-
-        # self.swap_item()
+            # if self.light_is_on() == False:
+            # self.set_light_on
+            # return
+            # while self.can_move_left():
+            #     self.move_left()
+            #     self.set_light_on()
 
 
+            # self.swap_item()
 if __name__ == "__main__":
     # Test our your implementation from the command line
     # with `python robot_sort.py`
