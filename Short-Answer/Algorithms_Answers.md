@@ -4,9 +4,9 @@
 
 a) I believe this is O(n). The condition is active depending on the size of n
 
-b)O(n^2) for every instance of n, j = 1, for every instance of j < n j _= 2, so this would be n _ n operations
+b)O(n\*.5n) still chewing on this one
 
-c) This is utilizing recursion, so I believe it is O(2^n) it is solving for bunnies of size n
+c) O(n) time since we're decrementing by one it will be entirely dependent on n until 0
 
 ## Exercise II
 
